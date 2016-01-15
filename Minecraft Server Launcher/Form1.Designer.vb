@@ -29,20 +29,18 @@ Partial Class Form1
         Me.SaveSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TroubleshootingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ServerStartsButFriendsCantJoinToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CannotFindToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PortFowardingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OtherHelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HowDoMyFriendsJoinToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HowDoIJoinToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContactToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ram = New System.Windows.Forms.NumericUpDown()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.world = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.gui = New System.Windows.Forms.CheckBox()
         Me.Button12 = New System.Windows.Forms.Button()
@@ -122,13 +120,12 @@ Partial Class Form1
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Button13 = New System.Windows.Forms.Button()
-        Me.Label29 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.Label30 = New System.Windows.Forms.Label()
-        Me.HToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.ram, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.spawn, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,13 +153,13 @@ Partial Class Form1
         '
         Me.Jar.Location = New System.Drawing.Point(5, 22)
         Me.Jar.Name = "Jar"
-        Me.Jar.Size = New System.Drawing.Size(166, 20)
+        Me.Jar.ReadOnly = True
+        Me.Jar.Size = New System.Drawing.Size(365, 20)
         Me.Jar.TabIndex = 0
-        Me.Jar.Text = "minecraft_server"
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.TroubleshootingToolStripMenuItem, Me.PortFowardingToolStripMenuItem, Me.OtherHelpToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.PortFowardingToolStripMenuItem, Me.OtherHelpToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(482, 24)
@@ -194,25 +191,6 @@ Partial Class Form1
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
-        'TroubleshootingToolStripMenuItem
-        '
-        Me.TroubleshootingToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ServerStartsButFriendsCantJoinToolStripMenuItem, Me.CannotFindToolStripMenuItem})
-        Me.TroubleshootingToolStripMenuItem.Name = "TroubleshootingToolStripMenuItem"
-        Me.TroubleshootingToolStripMenuItem.Size = New System.Drawing.Size(106, 20)
-        Me.TroubleshootingToolStripMenuItem.Text = "Troubleshooting"
-        '
-        'ServerStartsButFriendsCantJoinToolStripMenuItem
-        '
-        Me.ServerStartsButFriendsCantJoinToolStripMenuItem.Name = "ServerStartsButFriendsCantJoinToolStripMenuItem"
-        Me.ServerStartsButFriendsCantJoinToolStripMenuItem.Size = New System.Drawing.Size(325, 22)
-        Me.ServerStartsButFriendsCantJoinToolStripMenuItem.Text = "server starts but friends cant join"
-        '
-        'CannotFindToolStripMenuItem
-        '
-        Me.CannotFindToolStripMenuItem.Name = "CannotFindToolStripMenuItem"
-        Me.CannotFindToolStripMenuItem.Size = New System.Drawing.Size(325, 22)
-        Me.CannotFindToolStripMenuItem.Text = """could not find or load main class <.jar name>"""
-        '
         'PortFowardingToolStripMenuItem
         '
         Me.PortFowardingToolStripMenuItem.Name = "PortFowardingToolStripMenuItem"
@@ -223,8 +201,14 @@ Partial Class Form1
         '
         Me.OtherHelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HToolStripMenuItem, Me.HowDoMyFriendsJoinToolStripMenuItem, Me.HowDoIJoinToolStripMenuItem, Me.ContactToolStripMenuItem})
         Me.OtherHelpToolStripMenuItem.Name = "OtherHelpToolStripMenuItem"
-        Me.OtherHelpToolStripMenuItem.Size = New System.Drawing.Size(75, 20)
-        Me.OtherHelpToolStripMenuItem.Text = "Other help"
+        Me.OtherHelpToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.OtherHelpToolStripMenuItem.Text = "Contact"
+        '
+        'HToolStripMenuItem
+        '
+        Me.HToolStripMenuItem.Name = "HToolStripMenuItem"
+        Me.HToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
+        Me.HToolStripMenuItem.Text = "How do i set up an server?"
         '
         'HowDoMyFriendsJoinToolStripMenuItem
         '
@@ -243,6 +227,12 @@ Partial Class Form1
         Me.ContactToolStripMenuItem.Name = "ContactToolStripMenuItem"
         Me.ContactToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
         Me.ContactToolStripMenuItem.Text = "Contact"
+        '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Text = "Help"
         '
         'ram
         '
@@ -290,23 +280,14 @@ Partial Class Form1
         Me.Label3.TabIndex = 3
         Me.Label3.Text = "World name:"
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(177, 25)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(21, 13)
-        Me.Label2.TabIndex = 2
-        Me.Label2.Text = ".jar"
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(6, 3)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(53, 13)
+        Me.Label1.Size = New System.Drawing.Size(93, 13)
         Me.Label1.TabIndex = 1
-        Me.Label1.Text = ".jar name:"
+        Me.Label1.Text = "server jar location:"
         '
         'gui
         '
@@ -1023,7 +1004,7 @@ Partial Class Form1
         '
         'FolderBrowserDialog1
         '
-        Me.FolderBrowserDialog1.Description = "Please select the folder with server files"
+        Me.FolderBrowserDialog1.Description = "Please select the server jar file"
         '
         'TabControl1
         '
@@ -1040,15 +1021,12 @@ Partial Class Form1
         'TabPage1
         '
         Me.TabPage1.Controls.Add(Me.Button13)
-        Me.TabPage1.Controls.Add(Me.Label29)
-        Me.TabPage1.Controls.Add(Me.TextBox1)
         Me.TabPage1.Controls.Add(Me.ram)
         Me.TabPage1.Controls.Add(Me.Label5)
         Me.TabPage1.Controls.Add(Me.Label1)
         Me.TabPage1.Controls.Add(Me.Label4)
         Me.TabPage1.Controls.Add(Me.Jar)
         Me.TabPage1.Controls.Add(Me.world)
-        Me.TabPage1.Controls.Add(Me.Label2)
         Me.TabPage1.Controls.Add(Me.Label3)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
@@ -1060,29 +1038,12 @@ Partial Class Form1
         '
         'Button13
         '
-        Me.Button13.Location = New System.Drawing.Point(376, 147)
+        Me.Button13.Location = New System.Drawing.Point(376, 20)
         Me.Button13.Name = "Button13"
         Me.Button13.Size = New System.Drawing.Size(75, 23)
         Me.Button13.TabIndex = 11
         Me.Button13.Text = "change"
         Me.Button13.UseVisualStyleBackColor = True
-        '
-        'Label29
-        '
-        Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(7, 133)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(92, 13)
-        Me.Label29.TabIndex = 10
-        Me.Label29.Text = "server folder path:"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(5, 149)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(365, 20)
-        Me.TextBox1.TabIndex = 9
         '
         'TabPage2
         '
@@ -1191,13 +1152,12 @@ Partial Class Form1
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(40, 13)
         Me.Label30.TabIndex = 12
-        Me.Label30.Text = "v 1.0.0"
+        Me.Label30.Text = "v 1.1.0"
         '
-        'HToolStripMenuItem
+        'OpenFileDialog1
         '
-        Me.HToolStripMenuItem.Name = "HToolStripMenuItem"
-        Me.HToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
-        Me.HToolStripMenuItem.Text = "How do i set up an server?"
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        Me.OpenFileDialog1.Title = "Please select the server jar file"
         '
         'Form1
         '
@@ -1245,7 +1205,6 @@ Partial Class Form1
     End Sub
     Friend WithEvents Jar As System.Windows.Forms.TextBox
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
-    Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
@@ -1312,7 +1271,6 @@ Partial Class Form1
     Friend WithEvents rcon_pass As System.Windows.Forms.TextBox
     Friend WithEvents Label23 As System.Windows.Forms.Label
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents TroubleshootingToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PortFowardingToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OtherHelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents spawn As System.Windows.Forms.NumericUpDown
@@ -1333,20 +1291,19 @@ Partial Class Form1
     Friend WithEvents SaveSettingsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ServerStartsButFriendsCantJoinToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HowDoMyFriendsJoinToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HowDoIJoinToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents CannotFindToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents Button13 As System.Windows.Forms.Button
-    Friend WithEvents Label29 As System.Windows.Forms.Label
     Friend WithEvents ContactToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Label30 As Label
     Friend WithEvents HToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents ColorDialog1 As ColorDialog
 End Class

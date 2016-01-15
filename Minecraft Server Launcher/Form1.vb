@@ -4,6 +4,8 @@ Imports System.IO
 Public Class Form1
     'variables
     Dim path As String
+    Dim jarPath As String
+    Dim jarName() As String
     'all of the help buttons and menu strip buttons. the reasons i said that i dont know and they should google it in some of the ones below instead of just not including the help button is because some forget that google exists. you can help me expand this if you want.
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
         MessageBox.Show("Here, you can enter the preset if you are using superflat or customized world generation.", "Help")
@@ -62,29 +64,13 @@ Public Class Form1
         Application.Exit()
     End Sub
 
-    Private Sub ServerStartsButFriendsCantJoinToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ServerStartsButFriendsCantJoinToolStripMenuItem.Click
-        MessageBox.Show("you have probably not forwarded the port or you did it incorrectly. check the port forwarding tab for more information.", "Troubleshooting")
-    End Sub
-
     Private Sub PortFowardingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PortFowardingToolStripMenuItem.Click
         If MessageBox.Show("there is a really good website that can help you forward ports. it is not made by me, i just found it and i am giving you the link. do you want to open the website now?", "Port Forwarding", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
             Process.Start("http://portforward.com/english/applications/port_forwarding/Minecraft_Server/")
         End If
     End Sub
 
-    Private Sub HowDoMyFriendsJoinToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HowDoMyFriendsJoinToolStripMenuItem.Click
-        MessageBox.Show("your friends use your ip:port to join the server. to find your ip, go to http://www.ipchicken.com and the ip is the big blue text. add an :" & port.Value.ToString & " to the end and thats the ip your friends are going to use to connect to your server.", "Help")
-    End Sub
-
-    Private Sub HowDoIJoinToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HowDoIJoinToolStripMenuItem.Click
-        MessageBox.Show("you join by typing localhost as the ip.", "help")
-    End Sub
-
-    Private Sub CannotFindToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CannotFindToolStripMenuItem.Click
-        MessageBox.Show("You have specified the wrong name of the server jar, or you have selected the wrong path. double check that your server jar has the same name(it can not be an .exe/executeable) and make sure the right folder path is selected.", "Troubleshooting")
-    End Sub
-
-    Private Sub ContactToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ContactToolStripMenuItem.Click
+    Private Sub OtherHelpToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OtherHelpToolStripMenuItem.Click
         MessageBox.Show("write me an email at mateuszdrwalsredstonemc@gmail.com and i will answer your question as fast as i can.", "Contact")
     End Sub
 
@@ -95,6 +81,15 @@ Public Class Form1
     Private Sub HToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HToolStripMenuItem.Click
         MessageBox.Show("First, go to minecraft.net/download and download the server JAR. put it in an empty folder and change the path(in standard settings) to the folder you put the JAR in." & vbCr & "then, press the port forwarding tab and you will get help with forwarding ports. when you have done that, youre done!")
     End Sub
+
+    Function getServerPath(x)
+        Dim path_temp() As String = Split(x, "\")
+        Dim path_temp2 As String = ""
+        For i = 0 To path_temp.Length - 3
+            path_temp2 = path_temp2 & path_temp(i) & "\"
+        Next
+        Return path_temp2
+    End Function
 
     Function GetUserName() As String 'gets the username of the current user
         If TypeOf My.User.CurrentPrincipal Is
@@ -108,8 +103,8 @@ Public Class Form1
     End Function
 
     Private Sub save() 'save loading (yes, i know i could have done the whole save system better, but this was the first that came into my mind when i made it and it works well so i have not bothered doing something better)
-        If Not path = "\" Then 'i have no idea what this line does. i just dont remember.
-            Dim saver As New StreamWriter("C:\Users\" & GetUserName() & "\AppData\Roaming\MinecraftServerLauncherSaveFile.txt")
+        If Not path = "\" Then
+            Dim saver As New StreamWriter("C:\Users\" & GetUserName() & "\AppData\Roaming\MinecraftServerLauncherSaveFile_1_1_0.txt")
             'standard settings
             saver.WriteLine(Jar.Text)
             saver.WriteLine(world.Text)
@@ -160,14 +155,15 @@ Public Class Form1
             saver.WriteLine(rcon_pass.Text)
             'server files
             saver.WriteLine(path)
+            saver.WriteLine(jarPath)
             'close
             saver.Close()
         End If
     End Sub
 
     Sub loadSave() 'the loading function
-        If File.Exists("C:\Users\" & GetUserName() & "\AppData\Roaming\MinecraftServerLauncherSaveFile.txt") Then
-            Dim loader As New StreamReader("C:\Users\" & GetUserName() & "\AppData\Roaming\MinecraftServerLauncherSaveFile.txt")
+        If File.Exists("C:\Users\" & GetUserName() & "\AppData\Roaming\MinecraftServerLauncherSaveFile_1_1_0.txt") Then
+            Dim loader As New StreamReader("C:\Users\" & GetUserName() & "\AppData\Roaming\MinecraftServerLauncherSaveFile_1_1_0.txt")
             'standard settings
             Jar.Text = loader.ReadLine()
             world.Text = loader.ReadLine()
@@ -218,6 +214,7 @@ Public Class Form1
             rcon_pass.Text = loader.ReadLine()
             'server files
             path = loader.ReadLine()
+            jarPath = loader.ReadLine
             'Close
             loader.Close()
         End If
@@ -275,25 +272,30 @@ Public Class Form1
     End Sub
 
     Function serverPath() 'getting the server path
-        FolderBrowserDialog1.ShowDialog()
-        path = FolderBrowserDialog1.SelectedPath & "\"
+        OpenFileDialog1.ShowDialog()
+        Dim tempPath As String = getServerPath(OpenFileDialog1.FileName & "\")
+        Dim tempJarPath As String = OpenFileDialog1.FileName & "\"
         If path = "\" Then
             Return False
         Else
+            path = tempPath
+            jarPath = tempJarPath
+            Jar.Text = jarPath
             Return True
         End If
     End Function
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load 'checking if there is an save file, if not asking for the folder with all the server files
-        If Not File.Exists("C:\Users\" & GetUserName() & "\AppData\Roaming\MinecraftServerLauncherSaveFile.txt") Then
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        OpenFileDialog1.Filter = "Jar Files(*.jar)|*.jar"
+        If Not File.Exists("C:\Users\" & GetUserName() & "\AppData\Roaming\MinecraftServerLauncherSaveFile_1_1_0.txt") Then 'checking if there is an save file, if not asking for the folder with all the server files
             If Not serverPath() Then
-                MessageBox.Show("You did not select a folder. the application will now close.")
+                MessageBox.Show("You did not select a jar file. the application will now close.")
                 Application.Exit()
             End If
         Else
             loadSave()
         End If
-        TextBox1.Text = path
+        Jar.Text = jarPath
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click 'starting the server
@@ -301,11 +303,13 @@ Public Class Form1
             createPorp() 'creating properties file
             Dim bat As New StreamWriter(path & "simpleStart.bat") 'creating the run batch file
             bat.WriteLine("::this is an server start file automaticly generated every time you launch the server using the minecraft server launcher. you can also open this file directly if you want to run the server with the last used settings.")
+            bat.WriteLine("cd " & path)
             bat.WriteLine("cls")
+            jarName = Split(Jar.Text, "\")
             If gui.Checked Then
-                bat.WriteLine("java -Xmx" & ram.Value & "m -Xms" & ram.Value / 4 & "m -jar " & Jar.Text & ".jar")
+                bat.WriteLine("java -Xmx" & ram.Value & "m -Xms" & ram.Value / 4 & "m -jar " & jarName(jarName.Length - 2))
             Else
-                bat.WriteLine("java -Xmx" & ram.Value & "m -Xms" & ram.Value / 4 & "m -jar " & Jar.Text & ".jar nogui")
+                bat.WriteLine("java -Xmx" & ram.Value & "m -Xms" & ram.Value / 4 & "m -jar " & jarName(jarName.Length - 2) & " nogui")
             End If
             bat.WriteLine("pause")
             bat.Close()
@@ -316,10 +320,10 @@ Public Class Form1
     End Sub
 
     Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click 'changing path
-        FolderBrowserDialog1.ShowDialog()
-        If Not FolderBrowserDialog1.SelectedPath = "" Then
-            path = FolderBrowserDialog1.SelectedPath & "\"
-            TextBox1.Text = path
-        End If
+        serverPath()
+    End Sub
+
+    Private Sub HelpToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HelpToolStripMenuItem.Click
+        help_form.Show()
     End Sub
 End Class
