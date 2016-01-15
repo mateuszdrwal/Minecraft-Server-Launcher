@@ -30,11 +30,9 @@ Partial Class Form1
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PortFowardingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PortforwardcomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GrapplToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OtherHelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HowDoMyFriendsJoinToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HowDoIJoinToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ContactToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ram = New System.Windows.Forms.NumericUpDown()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -116,7 +114,6 @@ Partial Class Form1
         Me.Label23 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Button13 = New System.Windows.Forms.Button()
@@ -125,7 +122,7 @@ Partial Class Form1
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
+        Me.Button14 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.ram, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.spawn, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -176,57 +173,45 @@ Partial Class Form1
         'SaveSettingsToolStripMenuItem
         '
         Me.SaveSettingsToolStripMenuItem.Name = "SaveSettingsToolStripMenuItem"
-        Me.SaveSettingsToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
+        Me.SaveSettingsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.SaveSettingsToolStripMenuItem.Text = "Save settings"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'PortFowardingToolStripMenuItem
         '
+        Me.PortFowardingToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PortforwardcomToolStripMenuItem, Me.GrapplToolStripMenuItem})
         Me.PortFowardingToolStripMenuItem.Name = "PortFowardingToolStripMenuItem"
         Me.PortFowardingToolStripMenuItem.Size = New System.Drawing.Size(104, 20)
         Me.PortFowardingToolStripMenuItem.Text = "Port Forwarding"
         '
+        'PortforwardcomToolStripMenuItem
+        '
+        Me.PortforwardcomToolStripMenuItem.Name = "PortforwardcomToolStripMenuItem"
+        Me.PortforwardcomToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.PortforwardcomToolStripMenuItem.Text = "portforward.com"
+        '
+        'GrapplToolStripMenuItem
+        '
+        Me.GrapplToolStripMenuItem.Name = "GrapplToolStripMenuItem"
+        Me.GrapplToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.GrapplToolStripMenuItem.Text = "grappl"
+        '
         'OtherHelpToolStripMenuItem
         '
-        Me.OtherHelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HToolStripMenuItem, Me.HowDoMyFriendsJoinToolStripMenuItem, Me.HowDoIJoinToolStripMenuItem, Me.ContactToolStripMenuItem})
         Me.OtherHelpToolStripMenuItem.Name = "OtherHelpToolStripMenuItem"
         Me.OtherHelpToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.OtherHelpToolStripMenuItem.Text = "Contact"
-        '
-        'HToolStripMenuItem
-        '
-        Me.HToolStripMenuItem.Name = "HToolStripMenuItem"
-        Me.HToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
-        Me.HToolStripMenuItem.Text = "How do i set up an server?"
-        '
-        'HowDoMyFriendsJoinToolStripMenuItem
-        '
-        Me.HowDoMyFriendsJoinToolStripMenuItem.Name = "HowDoMyFriendsJoinToolStripMenuItem"
-        Me.HowDoMyFriendsJoinToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
-        Me.HowDoMyFriendsJoinToolStripMenuItem.Text = "How do my friends join?"
-        '
-        'HowDoIJoinToolStripMenuItem
-        '
-        Me.HowDoIJoinToolStripMenuItem.Name = "HowDoIJoinToolStripMenuItem"
-        Me.HowDoIJoinToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
-        Me.HowDoIJoinToolStripMenuItem.Text = "How do i join?"
-        '
-        'ContactToolStripMenuItem
-        '
-        Me.ContactToolStripMenuItem.Name = "ContactToolStripMenuItem"
-        Me.ContactToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
-        Me.ContactToolStripMenuItem.Text = "Contact"
         '
         'HelpToolStripMenuItem
         '
@@ -1002,10 +987,6 @@ Partial Class Form1
         Me.Label20.Text = "This is an unofficial server launcher created by mateuszdrwal. if you have any tr" &
     "ouble, check out the troubleshooting tab above."
         '
-        'FolderBrowserDialog1
-        '
-        Me.FolderBrowserDialog1.Description = "Please select the server jar file"
-        '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
@@ -1047,6 +1028,7 @@ Partial Class Form1
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.Button14)
         Me.TabPage2.Controls.Add(Me.Button12)
         Me.TabPage2.Controls.Add(Me.gui)
         Me.TabPage2.Controls.Add(Me.Button9)
@@ -1158,6 +1140,15 @@ Partial Class Form1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         Me.OpenFileDialog1.Title = "Please select the server jar file"
+        '
+        'Button14
+        '
+        Me.Button14.Location = New System.Drawing.Point(60, 274)
+        Me.Button14.Name = "Button14"
+        Me.Button14.Size = New System.Drawing.Size(20, 20)
+        Me.Button14.TabIndex = 73
+        Me.Button14.Text = "?"
+        Me.Button14.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -1291,19 +1282,16 @@ Partial Class Form1
     Friend WithEvents SaveSettingsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents HowDoMyFriendsJoinToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents HowDoIJoinToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
     Friend WithEvents Button13 As System.Windows.Forms.Button
-    Friend WithEvents ContactToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Label30 As Label
-    Friend WithEvents HToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
-    Friend WithEvents ColorDialog1 As ColorDialog
+    Friend WithEvents PortforwardcomToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GrapplToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Button14 As Button
 End Class

@@ -64,9 +64,15 @@ Public Class Form1
         Application.Exit()
     End Sub
 
-    Private Sub PortFowardingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PortFowardingToolStripMenuItem.Click
-        If MessageBox.Show("there is a really good website that can help you forward ports. it is not made by me, i just found it and i am giving you the link. do you want to open the website now?", "Port Forwarding", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+    Private Sub PortforwardcomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PortforwardcomToolStripMenuItem.Click
+        If MessageBox.Show("there is a really good website that can help you forward ports. it is not made by me, i just found it and i am giving you the link. do you want to open the website now?", "Port Forwarding", MessageBoxButtons.YesNo) = DialogResult.Yes Then
             Process.Start("http://portforward.com/english/applications/port_forwarding/Minecraft_Server/")
+        End If
+    End Sub
+
+    Private Sub GrapplToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GrapplToolStripMenuItem.Click
+        If MessageBox.Show("if you do not have access to your router or do not have permission to forward a port, a good solution is grappl. it lets you play with friends without forwarding a port." & vbCr & "to use it open it, choose to be anonymous and enter " & port.Value & " as the port. then the ip your friends use to join is displayed." & vbCr & "do you want to open grappl's website now?", "grappl", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            Process.Start("http://grappl.io/")
         End If
     End Sub
 
@@ -78,8 +84,12 @@ Public Class Form1
         save() 'auto save
     End Sub
 
-    Private Sub HToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HToolStripMenuItem.Click
+    Private Sub HToolStripMenuItem_Click(sender As Object, e As EventArgs)
         MessageBox.Show("First, go to minecraft.net/download and download the server JAR. put it in an empty folder and change the path(in standard settings) to the folder you put the JAR in." & vbCr & "then, press the port forwarding tab and you will get help with forwarding ports. when you have done that, youre done!")
+    End Sub
+
+    Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
+        MessageBox.Show("for the server to work, you do not have to put anything here. only put something here if you know what you are doing.")
     End Sub
 
     Function getServerPath(x)
